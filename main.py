@@ -1,14 +1,36 @@
+import operations
 import polynomials
 
+cached_derivated = {}
 
-def apply_newtons_method(polynomial : dict, initial_guess : int, iterations : int):
+def apply_newtons_method(polynomial : dict, derivative : dict,  initial_guess : float, iterations : float):
     new_guess = initial_guess
     for i in range(iterations):
-        derivative = polynomials.derivate_polynomial(polynomial)
         step = - (polynomials.calculate_image(polynomial, new_guess) / polynomials.calculate_image(derivative, new_guess))
         new_guess += step
     return new_guess
 
 
-test_polynomial = {5 : 1, 2 : 1, 1 : -1, 0 : -0.2}
-print(apply_newtons_method(test_polynomial, 1.3, 5))
+def apply_newtons_method_complex(polynomial : dict, derivative : dict, initial_guess: list, iterations: int):
+    """
+    :param polynomial: Dictionnary, key is the power, element is the factor
+    :param initial_guess: Complex number, first number of the tuple is the real part, second is the imaginary part.
+    :param iterations: Number of times to apply newton's method.
+    :return: One approximated root (the root returned depends on the initial guess)
+    """
+
+    new_guess = initial_guess
+    for i in range(iterations):
+        step = operations.divide(
+            polynomials.calculate_image_complex(polynomial, new_guess[0], new_guess[1]),
+            polynomials.calculate_image_complex(derivative, new_guess[0], new_guess[1])
+        )
+        new_guess[0] -= step[0]
+        new_guess[1] -= step[1]
+    return new_guess
+
+
+test_polynomial = {5 : 1, 2 : 1, 1 : -1, 0 : 1}
+derivative = polynomials.derivate_polynomial(test_polynomial)
+
+print(apply_newtons_method_complex(test_polynomial, derivative, [-0.5, 0.5], 8))
