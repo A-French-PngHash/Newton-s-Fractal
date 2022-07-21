@@ -16,4 +16,4 @@ while True:
     graph_scale[0][1] *= 0.9
     graph_scale[1][0] *= 0.9
     graph_scale[1][1] *= 0.9
-    points_per_unit *+ 1.23456
+    points_per_unit *= 1.23456
