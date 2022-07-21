@@ -3,7 +3,7 @@ import polynomials
 
 #cool_stuff.points_finding_roots_images(iterations=30, points_per_unit=100, resolution=200)
 
-test_polynomial = {5: 1, 4 : -0.5, 2: 1, 1: -1, 0: 1}
+test_polynomial = {5: 1, 2: 1, 1: -1, 0: 1}
 known_roots = [(0, -1), (0, 1), (-1.32, 0), (0.66, -0.56), (0.66, 0.56)]
 derivative = polynomials.derivate_polynomial(test_polynomial)
 

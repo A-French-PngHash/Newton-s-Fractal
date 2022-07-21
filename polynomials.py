@@ -1,7 +1,12 @@
 import math
+import sympy
+from sympy import I
+from sympy.abc import x
 
 import complex
 
+pol = sympy.Poly(x**5 + x**2 -x + 0.2)
+print(pol.eval(1 + I))
 
 def derivate_polynomial(polynomial : dict) -> dict:
     """
