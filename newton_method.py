@@ -1,16 +1,21 @@
+import sympy
+from sympy import I
+
 import operations
-import polynomials
 
 
-def apply_newtons_method(polynomial : dict, derivative : dict,  initial_guess : float, iterations : float):
+test : sympy.core.add.Add= -4.8 - 3.0 * I
+print(test.as_real_imag())
+
+def apply_newtons_method(polynomial : sympy.Poly, derivative : sympy.Poly,  initial_guess : float, iterations : int):
     new_guess = initial_guess
     for i in range(iterations):
-        step = - (polynomials.calculate_image(polynomial, new_guess) / polynomials.calculate_image(derivative, new_guess))
-        new_guess += step
+        step = (polynomial.eval(new_guess) / derivative.eval(new_guess))
+        new_guess -= step
     return new_guess
 
 
-def apply_newtons_method_complex(polynomial : dict, derivative : dict, initial_guess: list, iterations: int):
+def apply_newtons_method_complex(polynomial : sympy.Poly, derivative : sympy.Poly, initial_guess: tuple, iterations: int):
     """
     :param polynomial: Dictionnary, key is the power, element is the factor
     :param initial_guess: Complex number, first number of the tuple is the real part, second is the imaginary part.
@@ -18,12 +23,9 @@ def apply_newtons_method_complex(polynomial : dict, derivative : dict, initial_g
     :return: One approximated root (the root returned depends on the initial guess)
     """
 
-    new_guess = initial_guess
+    new_guess = initial_guess[0] + initial_guess[1]*I
     for i in range(iterations):
-        step = operations.divide(
-            polynomials.calculate_image_complex(polynomial, new_guess[0], new_guess[1]),
-            polynomials.calculate_image_complex(derivative, new_guess[0], new_guess[1])
-        )
+        step = (polynomial.eval(initial_guess) / derivative.eval(initial_guess)).as_real_imag()
         new_guess[0] -= step[0]
         new_guess[1] -= step[1]
     return new_guess

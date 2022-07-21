@@ -1,9 +1,12 @@
 import math
 
+import sympy
+from sympy import I
+from sympy.abc import x
+
 import newton_method
 import operations
 import plot_image
-import polynomials
 
 
 def points_finding_roots_images(iterations : int, points_per_unit = 50, resolution = 200):
@@ -13,10 +16,8 @@ def points_finding_roots_images(iterations : int, points_per_unit = 50, resoluti
     :param points_per_unit: Number of points to plot for each unit (between x:1 and x:2 for exemple)
     :return:
     """
-    test_polynomial = {5: 1, 2: 1, 1: -1, 0: 1}
-    derivative = polynomials.derivate_polynomial(test_polynomial)
-
-    roots_found = {}  # Where each initial point "ended up". The key is the initial coordinate, and the value is the final coordinate after every iteration using newtons method.
+    pol: sympy.Poly = sympy.Poly(x**5 + x**2 - x + 1)
+    derivative = pol.diff()
 
     graph_scale = ((-2, 2), (-2, 2))  # We are placing ourself in a complex graph
 
@@ -37,7 +38,7 @@ def points_finding_roots_images(iterations : int, points_per_unit = 50, resoluti
         for (index, value) in enumerate(points):
             cord_x = value[0]
             cord_y = value[1]
-            points[index] = newton_method.apply_newtons_method_complex(test_polynomial, derivative, [cord_x, cord_y], 1)
+            points[index] = newton_method.apply_newtons_method_complex(pol, derivative, [cord_x, cord_y], 1)
 
 
 def points_final_location_closeness_to_root(iterations : int, points_per_unit = 50, resolution = 200, graph_scale = ((-2, 2), (-2, 2))) -> (list, list):
