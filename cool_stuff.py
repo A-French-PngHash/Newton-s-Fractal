@@ -48,11 +48,9 @@ def points_final_location_closeness_to_root(iterations : int, points_per_unit = 
     :param points_per_unit: Number of points to plot for each unit (between x:1 and x:2 for exemple)
     :return: The position for every point. The second list is the point they are the closest from.
     """
-    test_polynomial = {5: 1, 2: 1, 1: -1, 0: 1}
-    derivative = polynomials.derivate_polynomial(test_polynomial)
+    pol: sympy.Poly = sympy.Poly(x**5 + x**2 - x + 1)
+    derivative = pol.diff()
     roots = [(0, -1), (0, 1), (-1.32, 0), (0.66, -0.56), (0.66, 0.56)]
-
-    # roots_found = {}  # Where each initial point "ended up". The key is the initial coordinate, and the value is the final coordinate after every iteration using newtons method.
 
     x_length = math.floor(graph_scale[0][1] - graph_scale[0][0])
     y_height = math.floor(graph_scale[1][1] - graph_scale[1][0])

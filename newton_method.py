@@ -1,12 +1,6 @@
 import sympy
 from sympy import I
 
-import operations
-
-
-test : sympy.core.add.Add= -4.8 - 3.0 * I
-print(test.as_real_imag())
-
 def apply_newtons_method(polynomial : sympy.Poly, derivative : sympy.Poly,  initial_guess : float, iterations : int):
     new_guess = initial_guess
     for i in range(iterations):
@@ -25,7 +19,6 @@ def apply_newtons_method_complex(polynomial : sympy.Poly, derivative : sympy.Pol
 
     new_guess = initial_guess[0] + initial_guess[1]*I
     for i in range(iterations):
-        step = (polynomial.eval(initial_guess) / derivative.eval(initial_guess)).as_real_imag()
-        new_guess[0] -= step[0]
-        new_guess[1] -= step[1]
-    return new_guess
+        new_guess -= (polynomial.eval(new_guess) / derivative.eval(new_guess))
+    new_guess = new_guess.as_real_imag()
+    return (new_guess[0], new_guess[1])
