@@ -10,20 +10,20 @@ class PlotImage():
     """
     colors = [(231, 143, 49), (238, 47, 54), (143, 105, 226), (112, 145, 225), (73, 190, 223)]
 
-    def __init__(self, resolution: int, x_length: int, y_height: int, graph_scale: tuple):
+    def __init__(self, nb_points_line : int, nb_points_column : int, x_length_unit: int, y_height_unit: int, graph_scale: tuple):
         """
-        :param resolution:
         :param x_lenght: Length of the graph on the x axis.
         :param y_height: Height of the graph on the y axis.
         :param graph_scale: A tuple of two tuple, which gives the dimension of the graph (ex : [(-1, 2), (-2, -2)]) The first tuple is the x size, second is the y.
         """
         self.graph_scale = graph_scale
-        self.resolution = resolution
 
-        x_max = x_length * resolution
-        y_max = y_height * resolution
+        self.nb_points_line = nb_points_line
+        self.nb_points_column = nb_points_column
+        self.pixel_per_unit_x = self.nb_points_line / x_length_unit
+        self.pixel_per_unit_y = self.nb_points_column / y_height_unit
 
-        self.img = Image.new('RGB', (x_max, y_max), color=1)
+        self.img = Image.new('RGB', (nb_points_line, nb_points_column), color=1)
         self.img_draw = PIL.ImageDraw.ImageDraw(self.img)
 
     def _draw_graph_axis(self, image: PIL.ImageDraw.ImageDraw):
@@ -42,9 +42,9 @@ class PlotImage():
         :param point:
         :return: Coordinates for the image
         """
-        cord_x = math.floor((point[0] - self.graph_scale[0][0]) * self.resolution)
-        cord_y = math.floor((-point[1] + self.graph_scale[1][1]) * self.resolution)
-        return (cord_x, cord_y)
+        cord_x = round(math.sqrt((point[0] - self.graph_scale[0][0])**2) * self.pixel_per_unit_x)
+        cord_y = round(math.sqrt((-point[1] + self.graph_scale[1][1])**2) * self.pixel_per_unit_y)
+        return cord_x, cord_y
 
     def plot_points(self, points: list, color_type : list, image_name="sqr.png"):
         """
