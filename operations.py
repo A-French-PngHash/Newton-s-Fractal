@@ -1,5 +1,6 @@
 import cmath
 import math
+import numpy
 
 """
 I just wasn't feeling like implementing divisions manually xD

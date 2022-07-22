@@ -1,7 +1,12 @@
 import math
+import numpy
 
-import complex
+from numpy.polynomial import Polynomial
 
+pol = Polynomial([1, -1, 1, 0, -0.5, 1])
+print(pol)
+print(pol(1 + 1j))
+print(type(1 + 1j))
 
 def derivate_polynomial(polynomial : dict) -> dict:
     """
