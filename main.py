@@ -1,7 +1,7 @@
 import cool_stuff
 import polynomials
 
-#cool_stuff.points_finding_roots_images(iterations=30, nb_points_column=500, nb_points_line=500)
+cool_stuff.points_finding_roots_images(iterations=10, nb_points_column=500, nb_points_line=500)
 
 test_polynomial = {5: 1, 4 : -0.5, 2: 1, 1: -1, 0: 1}
 known_roots = [(0, -1), (0, 1), (-1.32, 0), (0.66, -0.56), (0.66, 0.56)]
