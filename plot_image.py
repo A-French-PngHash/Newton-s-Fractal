@@ -58,9 +58,6 @@ class PlotImage():
         :return:
         """
         self._draw_graph_axis(self.img_draw)
-        if image_name == "1.png":
-            with open('datamain.json', 'w') as f:
-                json.dump(points, f)
 
         for (index, value) in enumerate(points):
             if (self.graph_scale[0][0] < value[0] < self.graph_scale[0][1] and self.graph_scale[1][

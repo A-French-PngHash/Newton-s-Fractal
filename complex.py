@@ -11,8 +11,10 @@ def get_exponential_form(real_part : float, imaginary_part : float) -> (float, f
         return (0, 0)
     module = math.sqrt(real_part**2 + imaginary_part**2)
     cos_output = real_part / module
-    cos_input = math.acos(cos_output) # This is the argument.
-    return (module, cos_input)
+    argument = math.acos(cos_output) # This is the argument.-
+    if imaginary_part < 0:
+        argument *= -1
+    return (module, argument)
 
 def get_algebric_form(module : float, argument : float) -> (float, float):
     """
