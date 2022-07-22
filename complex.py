@@ -7,9 +7,11 @@ def get_exponential_form(real_part : float, imaginary_part : float) -> (float, f
     :param imaginary_part:
     :return: The factor of the exponential, and the factor of the i power. ex : 5e^3i : (5, 3)
     """
-    if real_part == 0 and imaginary_part == 0:
+    if round(real_part*10000000)/10000000 == 0 and round(imaginary_part*10000000)/10000000 == 0:
         return (0, 0)
     module = math.sqrt(real_part**2 + imaginary_part**2)
+    if module == 0:
+        print(real_part, imaginary_part)
     cos_output = real_part / module
     argument = math.acos(cos_output) # This is the argument.-
     if imaginary_part < 0:

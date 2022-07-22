@@ -9,7 +9,7 @@ class PlotImage():
     """
     An Image to plot points. An instance must be created for every image.
     """
-    colors = [(231, 143, 49), (238, 47, 54), (143, 105, 226), (112, 145, 225), (73, 190, 223)]
+    colors = [(231, 143, 49), (238, 47, 54), (143, 105, 226), (112, 145, 225), (73, 190, 223), (50, 222, 127)]
 
     def __init__(self, nb_points_line : int, nb_points_column : int, x_length_unit: int, y_height_unit: int, graph_scale: tuple):
         """
