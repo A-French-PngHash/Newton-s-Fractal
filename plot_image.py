@@ -74,13 +74,12 @@ class PlotImage():
         (3;3) is the position of the pixel on the image starting from the top left corner.
         Then you multiply this position by the resolution of the image. And floor it for it to be an integer.
         """
-        print(len(points))
         for (index, value) in enumerate(points):
-            if (self.graph_scale[0][0] < value[0] < self.graph_scale[0][1] and self.graph_scale[1][
-                0] < value[1] <
+            if (self.graph_scale[0][0] < value.real < self.graph_scale[0][1] and self.graph_scale[1][
+                0] < value.imag <
                     self.graph_scale[1][
                         1]):
-                cord_x, cord_y = self._coordinates_for_point_on_graph(value)
+                cord_x, cord_y = self._coordinates_for_point_on_graph((value.real, value.imag))
                 self.img_draw.point((cord_x, cord_y), self.colors[color_type[index]])
 
         output_path = os.path.abspath(f"Output/{image_name}")
