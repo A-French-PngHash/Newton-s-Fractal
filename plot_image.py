@@ -1,3 +1,4 @@
+import json
 import math
 import os
 import PIL
@@ -57,24 +58,10 @@ class PlotImage():
         :return:
         """
         self._draw_graph_axis(self.img_draw)
+        if image_name == "1.png":
+            with open('datamain.json', 'w') as f:
+                json.dump(points, f)
 
-        """
-        Method to get the position of a pixel in an image from a point in a graph.
-        The image (0, 0) is at the top left.
-
-        What matters to calculate the position is the number of y graduation above 0 and the number of x graduation below 0.
-
-        x_pos = x + nb_x_grad_below_zero
-        y_pos = -y + nb_y_grad_above_zero
-
-        Exemple : graph where 2 above zero for y and 2 below zero for x.
-        point -> (1; -1)
-        x_pos = 1 + 2 = 3
-        y_pos = -(-1) + 2 = 3
-        (3;3) is the position of the pixel on the image starting from the top left corner.
-        Then you multiply this position by the resolution of the image. And floor it for it to be an integer.
-        """
-        print(len(points))
         for (index, value) in enumerate(points):
             if (self.graph_scale[0][0] < value[0] < self.graph_scale[0][1] and self.graph_scale[1][
                 0] < value[1] <

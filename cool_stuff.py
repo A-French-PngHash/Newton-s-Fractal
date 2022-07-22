@@ -15,7 +15,7 @@ def points_finding_roots_images(iterations : int, nb_points_line : int, nb_point
     """
     test_polynomial = {5: 1, 2: 1, 1: -1, 0: 1}
     derivative = polynomials.derivate_polynomial(test_polynomial)
-    
+    print(derivative)
     graph_scale = ((-2, 2), (-2, 2))  # We are placing ourself in a complex graph
 
     x_length = math.floor(graph_scale[0][1] - graph_scale[0][0])
@@ -24,7 +24,6 @@ def points_finding_roots_images(iterations : int, nb_points_line : int, nb_point
     initial_points = [(graph_scale[0][0] + (x / nb_points_line)*x_length, graph_scale[1][0] + (y / nb_points_column)*y_height) for x in
                       range(nb_points_line + 1) for y in range(nb_points_column + 1)]
 
-    print(initial_points)
     points = initial_points.copy()
 
     for iteration in range(iterations):
