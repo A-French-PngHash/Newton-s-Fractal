@@ -15,7 +15,6 @@ def points_finding_roots_images(iterations : int, nb_points_line : int, nb_point
     """
     test_polynomial = {5: 1, 2: 1, 1: -1, 0: 1}
     derivative = polynomials.derivate_polynomial(test_polynomial)
-    print(derivative)
     graph_scale = ((-2, 2), (-2, 2))  # We are placing ourself in a complex graph
 
     x_length = math.floor(graph_scale[0][1] - graph_scale[0][0])
@@ -70,6 +69,7 @@ def points_final_location_closeness_to_root(iterations : int, nb_points_line, nb
                 min_distance = ndist
                 root_index = rind
         closest_root.append(root_index)
+    print(f"Printing image : {file_name}")
     fractal = plot_image.PlotImage(nb_points_line = nb_points_line, nb_points_column = nb_points_column, x_length_unit=x_length_unit, y_height_unit=y_height_unit, graph_scale=graph_scale)
     fractal.plot_points(initial_points, closest_root, image_name=file_name)
 
