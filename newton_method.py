@@ -1,7 +1,7 @@
 import operations
 import polynomials
 
-def apply_newtons_method(polynomial : dict, derivative : dict,  initial_guess : float, iterations : float):
+def apply_newtons_method(polynomial : dict, derivative : dict,  initial_guess : float, iterations : int):
     new_guess = initial_guess
     for i in range(iterations):
         step = - (polynomials.calculate_image(polynomial, new_guess) / polynomials.calculate_image(derivative, new_guess))
